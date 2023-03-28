@@ -19,10 +19,20 @@ const store = createStore({
 
   },
   mutations: {
-
+    SET_USER(state, payload) {
+      const { user, parent } = payload;
+      if (parent) {
+        parent.children = parent.children || [];
+        parent.children.push(user);
+      } else {
+        state.tableData.push(user);
+      }
+    },
   },
   actions: {
-
+    ADD_USER({ commit }, data) {
+      commit('SET_USER', data);
+    },
   },
 });
 
