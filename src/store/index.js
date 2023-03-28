@@ -2,7 +2,7 @@ import { createStore } from 'vuex';
 
 const store = createStore({
   state: {
-    tableData: [
+    tableData: JSON.parse(localStorage.getItem('tableData')) || [
       { name: 'Мария', number: "+7 987 654 32 10", children: [
         { name: 'Саша', number: "+7 123 456 78 90", children: [
           { name: 'Андрей', number: "+7 977 341 75 08" }
@@ -27,6 +27,7 @@ const store = createStore({
       } else {
         state.tableData.push(user);
       }
+      localStorage.setItem('tableData', JSON.stringify(state.tableData));
     },
   },
   actions: {
