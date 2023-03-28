@@ -37,10 +37,10 @@ export default {
 <style lang="scss" scoped>
 .table {
   width: 100%;
-  max-width: 800px;
   border-collapse: collapse;
   border: 1px solid #ccc;
   margin-bottom: 1rem;
+  margin-top: 1rem;
 
   &__header {
     font-weight: bold;

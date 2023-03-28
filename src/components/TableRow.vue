@@ -1,6 +1,6 @@
 <template>
   <tr>
-    <td :style="{ paddingLeft: level * 20 + 'px' }" class="table__cell table__cell--left">
+    <td :style="{ paddingLeft: 10 + level * 20 + 'px' }" class="table__cell table__cell--left">
       {{ row.name }}
     </td>
     <td class="table__cell table__cell--right">{{ row.number }}</td>
