@@ -1,11 +1,16 @@
 <template>
-  <tr>
-    <td :style="{ paddingLeft: 10 + level * 20 + 'px' }" class="table__cell table__cell--left">
+  <tr @click="toggleChildren">
+    <td
+      :style="{ paddingLeft: 10 + level * 20 + 'px' }"
+      class="table__cell table__cell--left"
+    >
       {{ row.name }}
     </td>
     <td class="table__cell table__cell--right">{{ row.number }}</td>
   </tr>
+
   <TableRow
+    v-if="showChildren"
     v-for="(child, index) in row.children"
     :key="index"
     :row="child"
@@ -25,6 +30,18 @@ export default {
     level: {
       type: Number,
       default: 0,
+    },
+  },
+
+  data() {
+    return {
+      showChildren: true,
+    }
+  },
+
+  methods: {
+    toggleChildren() {
+      this.showChildren = !this.showChildren
     },
   },
 }
