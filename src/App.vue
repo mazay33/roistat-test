@@ -7,7 +7,7 @@
     <div class="content__right">
       <transition name="fade">
         <div v-if="isShowForm">
-          <UserForm />
+          <UserForm @closeForm="() => isShowForm = false" />
         </div>
       </transition>
     </div>
@@ -48,6 +48,10 @@ export default {
   justify-content: space-around;
   width: 100%;
   padding: 50px 100px 0 100px;
+  @media screen and (max-width: 1180px) {
+    flex-direction: column;
+    padding: 20px 10px 0 10px;
+}
   &__left {
     display: flex;
     flex-direction: column;

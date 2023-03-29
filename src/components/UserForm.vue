@@ -1,5 +1,6 @@
 <template>
   <form class="form" @submit.prevent="handleSubmit">
+    <div @click="$emit('closeForm')" class="form__close">x</div>
     <h2>Добавление пользователя</h2>
     <div class="form__field">
       <label> Имя </label>
@@ -80,6 +81,7 @@ export default {
 
 <style lang="scss" scoped>
 .form {
+  position: relative;
   max-width: 500px;
   padding: 20px;
   display: flex;
@@ -92,6 +94,13 @@ export default {
     display: flex;
     justify-content: space-between;
     gap: 20px;
+  }
+  &__close{
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 2px;
+    padding: 5px;
   }
 }
 </style>
