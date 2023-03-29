@@ -2,13 +2,23 @@
   <table class="table">
     <thead>
       <tr>
-        <th class="table__header table__header--left">Имя</th>
-        <th class="table__header table__header--right">Номер</th>
+        <th
+          class="table__header table__header--left"
+          @click="toggleSortOrder('name')"
+        >
+          Имя
+        </th>
+        <th
+          class="table__header table__header--right"
+          @click="toggleSortOrder('number')"
+        >
+          Номер
+        </th>
       </tr>
     </thead>
     <tbody>
       <TableRow
-        v-for="(row, index) in tableData"
+        v-for="(row, index) in sortedTableData"
         :key="index"
         :row="row"
         :level="0"
@@ -23,13 +33,61 @@ import TableRow from './TableRow.vue'
 
 export default {
   name: 'Table',
-
+  data() {
+    return {
+      sortColumn: '',
+      sortOrder: '',
+    }
+  },
+  methods: {
+    toggleSortOrder(column) {
+      if (this.sortColumn === column) {
+        this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc'
+      } else {
+        this.sortColumn = column
+        this.sortOrder = 'asc'
+      }
+    },
+  },
   components: {
     TableRow,
   },
 
   computed: {
     ...mapState(['tableData']),
+    sortedTableData() {
+      let sortedData = this.tableData
+
+      if (this.sortColumn) {
+        sortedData = sortedData.sort((a, b) => {
+          const aValue = a[this.sortColumn]
+          const bValue = b[this.sortColumn]
+
+          if (this.sortOrder === 'asc') {
+            return aValue > bValue ? 1 : -1
+          } else {
+            return aValue < bValue ? 1 : -1
+          }
+        })
+
+        sortedData.forEach((row) => {
+          if (row.children) {
+            row.children = row.children.sort((a, b) => {
+              const aValue = a[this.sortColumn]
+              const bValue = b[this.sortColumn]
+
+              if (this.sortOrder === 'asc') {
+                return aValue > bValue ? 1 : -1
+              } else {
+                return aValue < bValue ? 1 : -1
+              }
+            })
+          }
+        })
+      }
+
+      return sortedData
+    },
   },
 }
 </script>
