@@ -2,9 +2,12 @@
   <tr @click="toggleChildren">
     <td
       :style="{ paddingLeft: 10 + level * 20 + 'px' }"
+      :class="[row.children ? 'table__cell--active' : '']"
       class="table__cell table__cell--left"
     >
+      <span v-if="row.children">+</span>
       {{ row.name }}
+      <span v-if="row.children">{{ row.children.length }}</span>
     </td>
     <td class="table__cell table__cell--right">{{ row.number }}</td>
   </tr>
@@ -51,6 +54,17 @@ export default {
 .table__cell {
   padding: 1rem;
   border-bottom: 1px solid #ccc;
+  &--active {
+    cursor: pointer;
+  }
+  & td{
+    display: flex;
+  }
+  & span:nth-child(2) {
+    padding: 5px;
+    border-radius: 100px ;
+    background:#ccc;
+  }
 }
 
 .table__cell--left {
