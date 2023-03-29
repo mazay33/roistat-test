@@ -6,12 +6,40 @@
           class="table__header table__header--left"
           @click="toggleSortOrder('name')"
         >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            id="filter"
+          >
+            <path
+              fill="#000"
+              fill-rule="evenodd"
+              d="M7 3a1 1 0 0 0-1 1v1.17a3.001 3.001 0 0 0 0 5.66V20a1 1 0 1 0 2 0v-9.17a3.001 3.001 0 0 0 0-5.66V4a1 1 0 0 0-1-1zm1 5a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm9-5a1 1 0 0 0-1 1v8.17a3.001 3.001 0 0 0 0 5.66V20a1 1 0 1 0 2 0v-2.17a3.001 3.001 0 0 0 0-5.66V4a1 1 0 0 0-1-1zm1 12a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
           Имя
         </th>
         <th
           class="table__header table__header--right"
           @click="toggleSortOrder('number')"
         >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            id="filter"
+          >
+            <path
+              fill="#000"
+              fill-rule="evenodd"
+              d="M7 3a1 1 0 0 0-1 1v1.17a3.001 3.001 0 0 0 0 5.66V20a1 1 0 1 0 2 0v-9.17a3.001 3.001 0 0 0 0-5.66V4a1 1 0 0 0-1-1zm1 5a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm9-5a1 1 0 0 0-1 1v8.17a3.001 3.001 0 0 0 0 5.66V20a1 1 0 1 0 2 0v-2.17a3.001 3.001 0 0 0 0-5.66V4a1 1 0 0 0-1-1zm1 12a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
           Номер
         </th>
       </tr>
@@ -61,7 +89,7 @@ export default {
           data = data.sort((a, b) => {
             const aValue = a[this.sortColumn]
             const bValue = b[this.sortColumn]
-            
+
             if (this.sortOrder === 'asc') {
               return aValue > bValue ? 1 : -1
             } else {
@@ -91,6 +119,7 @@ export default {
   margin-top: 1rem;
 
   &__header {
+    cursor: pointer;
     font-weight: bold;
     padding: 1rem;
     text-align: left;
