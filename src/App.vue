@@ -44,7 +44,7 @@ export default {
 
 .content {
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: space-around;
   width: 100%;
   padding: 50px 100px 0 100px;
@@ -64,6 +64,7 @@ export default {
     }
   }
   &__right {
+    margin-top: 55px;
     width: 100%;
     display: flex;
     justify-content: center;
