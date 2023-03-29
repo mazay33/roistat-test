@@ -56,37 +56,27 @@ export default {
   computed: {
     ...mapState(['tableData']),
     sortedTableData() {
-      let sortedData = this.tableData
-
-      if (this.sortColumn) {
-        sortedData = sortedData.sort((a, b) => {
-          const aValue = a[this.sortColumn]
-          const bValue = b[this.sortColumn]
-
-          if (this.sortOrder === 'asc') {
-            return aValue > bValue ? 1 : -1
-          } else {
-            return aValue < bValue ? 1 : -1
-          }
-        })
-
-        sortedData.forEach((row) => {
+      const sortedData = (data) => {
+        if (this.sortColumn) {
+          data = data.sort((a, b) => {
+            const aValue = a[this.sortColumn]
+            const bValue = b[this.sortColumn]
+            
+            if (this.sortOrder === 'asc') {
+              return aValue > bValue ? 1 : -1
+            } else {
+              return aValue < bValue ? 1 : -1
+            }
+          })
+        }
+        data.forEach((row) => {
           if (row.children) {
-            row.children = row.children.sort((a, b) => {
-              const aValue = a[this.sortColumn]
-              const bValue = b[this.sortColumn]
-
-              if (this.sortOrder === 'asc') {
-                return aValue > bValue ? 1 : -1
-              } else {
-                return aValue < bValue ? 1 : -1
-              }
-            })
+            row.children = sortedData(row.children)
           }
         })
+        return data
       }
-
-      return sortedData
+      return sortedData(this.tableData)
     },
   },
 }
