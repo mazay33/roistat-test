@@ -5,18 +5,6 @@ html {
   font-size: $mainFontSize;
   color: $mainFontColor;
   height: 100%;
-
-  @media screen and (max-width: $desktopWidth) {
-    font-size: 16px;
-  }
-
-  @media screen and (max-width: $tableWidth) {
-    font-size: 15px;
-  }
-
-  @media screen and (max-width: $phoneWidth) {
-    font-size: 14px;
-  }
 }
 
 body {
@@ -49,7 +37,7 @@ input,
 textarea,
 select,
 button {
-  border: 1px solid $border-base;
+  border: 1px solid #DCDFE6;
 }
 
 a {
